@@ -286,7 +286,7 @@ class AstraCard {
             ctx.font = `60px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
             ctx.fillText(this.name, 430, 155); 
 
-            ctx.fillStyle = '#f2d7b7';
+            ctx.fillStyle = '#341a54';
             ctx.font = `45px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
             ctx.fillText(this.author, 430, 210); 
 
