@@ -1,6 +1,6 @@
 {
   "name": "@codemaxxer69/astracard",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A package to add music cards in your music bots.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -12,6 +12,7 @@
     "res"
   ],
   "dependencies": {
+    "@codemaxxer69/astracard": "^1.0.1",
     "@napi-rs/canvas": "^0.1.44",
     "color-thief-node": "^1.0.4"
   },
