@@ -3,7 +3,7 @@ export declare class mewcard {
     name?: string;
     author?: string;
     color?: string;
-    theme?: "theme1" | "theme2" | "theme3" | "theme4" ;
+    theme?: "theme1" | "theme2" | "theme3" | "theme4" | "theme5" ;
     brightness?: number;
     thumbnail?: string;
     requester?: string;
@@ -12,7 +12,7 @@ export declare class mewcard {
   public setName(name: string): this;
   public setAuthor(author: string): this;
   public setColor(color: string): this;
-  public setTheme(theme: string | "theme1" | "theme2" | "theme3" | "theme4"): this;
+  public setTheme(theme: string | "theme1" | "theme2" | "theme3" | "theme4" | "theme5"): this;
   public setBrightness(brightness: number): this;
   public setThumbnail(thumbnail: string): this;
   public setRequester(requester: string): this;
