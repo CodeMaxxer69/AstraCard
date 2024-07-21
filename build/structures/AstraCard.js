@@ -10,13 +10,14 @@ const { createCanvas, loadImage } = require("@napi-rs/canvas");
 // canvas.GlobalFonts.registerFromPath(`build/structures/font/notosans-kr-black.ttf`, "noto-sans-kr");
 
 // Register fonts from package paths
-canvas.GlobalFonts.registerFromPath(`node_modules/astracard/build/structures/font/circularstd-black.otf`, "circular-std");
-canvas.GlobalFonts.registerFromPath(`node_modules/astracard/build/structures/font/notosans-jp-black.ttf`, "noto-sans-jp");
-canvas.GlobalFonts.registerFromPath(`node_modules/astracard/build/structures/font/notosans-black.ttf`, "noto-sans");
-canvas.GlobalFonts.registerFromPath(`node_modules/astracard/build/structures/font/notoemoji-bold.ttf`, "noto-emoji");
-canvas.GlobalFonts.registerFromPath(`node_modules/astracard/build/structures/font/notosans-kr-black.ttf`, "noto-sans-kr");
+canvas.GlobalFonts.registerFromPath(`node_modules/@codemaxxer69/astracard/build/structures/font/circularstd-black.otf`, "circular-std");
+canvas.GlobalFonts.registerFromPath(`node_modules/@codemaxxer69/astracard/build/structures/font/notosans-jp-black.ttf`, "noto-sans-jp");
+canvas.GlobalFonts.registerFromPath(`node_modules/@codemaxxer69/astracard/build/structures/font/notosans-black.ttf`, "noto-sans");
+canvas.GlobalFonts.registerFromPath(`node_modules/@codemaxxer69/astracard/build/structures/font/notoemoji-bold.ttf`, "noto-emoji");
+canvas.GlobalFonts.registerFromPath(`node_modules/@codemaxxer69/astracard/build/structures/font/notosans-kr-black.ttf`, "noto-sans-kr");
 canvas.GlobalFonts.registerFromPath(`node_modules/musicard-bun/build/structures/font/Chewy-Regular.ttf`, "chewy");
 canvas.GlobalFonts.registerFromPath(`node_modules/musicard-bun/build/structures/font/Space.ttf`, "space");
+
 
 class AstraCard {
     constructor(options) {
@@ -285,7 +286,7 @@ class AstraCard {
             ctx.font = `60px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
             ctx.fillText(this.name, 430, 155); 
 
-            ctx.fillStyle = '#f2d7b7';
+            ctx.fillStyle = '#341a54';
             ctx.font = `45px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
             ctx.fillText(this.author, 430, 210); 
 
