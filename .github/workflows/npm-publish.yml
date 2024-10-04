@@ -12,7 +12,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install 
+      # Install system-level dependencies for canvas
+      - run: sudo apt-get install libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++
+      - run: npm install
+      # Rebuild native modules (like canvas)
+      - run: npm rebuild
       - run: npm test
 
   publish-npm:
@@ -24,7 +28,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm install 
-      - run: npm publish --access public 
+      - run: npm install
+      - run: npm rebuild
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
