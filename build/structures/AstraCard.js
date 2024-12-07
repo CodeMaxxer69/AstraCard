@@ -185,7 +185,6 @@ class AstraCard {
 
             return image.toBuffer('image/png');
         } else if (this.theme === "theme2") {
-
             const progressBarWidth = (validatedProgress / 100) * 670;
             const circleX = progressBarWidth + 60;
             const image = canvas.createCanvas(1280, 350);
@@ -193,6 +192,8 @@ class AstraCard {
             const progressBarCanvas = canvas.createCanvas(670, 25);
             const progressBarCtx = progressBarCanvas.getContext('2d');
             const cornerRadius = 10;
+        
+            // Draw progress bar background
             progressBarCtx.beginPath();
             progressBarCtx.moveTo(cornerRadius, 0);
             progressBarCtx.lineTo(670 - cornerRadius, 0);
@@ -206,11 +207,14 @@ class AstraCard {
             progressBarCtx.closePath();
             progressBarCtx.fillStyle = '#ababab';
             progressBarCtx.fill();
+        
+            // Draw progress fill
             progressBarCtx.beginPath();
             progressBarCtx.moveTo(cornerRadius, 0);
             progressBarCtx.lineTo(progressBarWidth - cornerRadius, 0);
             progressBarCtx.arc(progressBarWidth - cornerRadius, cornerRadius, cornerRadius, 1.5 * Math.PI, 2 * Math.PI);
-            progressBarCtx.lineTo(progressBarWidth, 25);
+            progressBarCtx.lineTo(progressBarWidth, 25 - cornerRadius);
+            progressBarCtx.arc(progressBarWidth - cornerRadius, 25 - cornerRadius, cornerRadius, 0, 0.5 * Math.PI);
             progressBarCtx.lineTo(cornerRadius, 25);
             progressBarCtx.arc(cornerRadius, 25 - cornerRadius, cornerRadius, 0.5 * Math.PI, Math.PI);
             progressBarCtx.lineTo(0, cornerRadius);
@@ -218,25 +222,25 @@ class AstraCard {
             progressBarCtx.closePath();
             progressBarCtx.fillStyle = `#${validatedColor}`;
             progressBarCtx.fill();
-
+        
             const circleCanvas = canvas.createCanvas(1000, 1000);
             const circleCtx = circleCanvas.getContext('2d');
-
+        
             const circleRadius = 20;
             const circleY = 97;
-
+        
             circleCtx.beginPath();
             circleCtx.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI);
             circleCtx.fillStyle = `#${validatedColor}`;
             circleCtx.fill();
-
-            const background = await canvas.loadImage(`https://i.ibb.co/sVFTBNS/1.png`);
-
+        
+            const background = await canvas.loadImage(`https://i.ibb.co/Hrs0CP9/1086711.png`);
+        
             const thumbnailCanvas = canvas.createCanvas(500, 500);
             const thumbnailCtx = thumbnailCanvas.getContext('2d');
-
+        
             let thumbnailImage;
-
+        
             try {
                 thumbnailImage = await canvas.loadImage(this.thumbnail, {
                     requestOptions: {
@@ -246,73 +250,61 @@ class AstraCard {
                     }
                 });
             } catch (error) {
-               
                 console.error('MUSICARD: Thumbnail image failed to load, not supported');
                 thumbnailImage = await canvas.loadImage(`https://images.vexels.com/media/users/3/152580/isolated/preview/3149a30fc7f8585d67625a47b0f10916-orange-square-question-mark-icon.png`); 
             }
-
+        
             const thumbnailSize = Math.min(thumbnailImage.width, thumbnailImage.height);
             const thumbnailX = (thumbnailImage.width - thumbnailSize) / 2;
             const thumbnailY = (thumbnailImage.height - thumbnailSize) / 2;
-
+        
             const cornerRadius2 = 45;
-
+        
+            // Draw thumbnail with smooth rounded corners
             thumbnailCtx.beginPath();
-            thumbnailCtx.moveTo(0 + cornerRadius2, 0);
+            thumbnailCtx.moveTo(cornerRadius2, 0);
             thumbnailCtx.arcTo(thumbnailCanvas.width, 0, thumbnailCanvas.width, thumbnailCanvas.height, cornerRadius2);
             thumbnailCtx.arcTo(thumbnailCanvas.width, thumbnailCanvas.height, 0, thumbnailCanvas.height, cornerRadius2);
             thumbnailCtx.arcTo(0, thumbnailCanvas.height, 0, 0, cornerRadius2);
             thumbnailCtx.arcTo(0, 0, thumbnailCanvas.width, 0, cornerRadius2);
             thumbnailCtx.closePath();
             thumbnailCtx.clip();
-
+        
             thumbnailCtx.drawImage(thumbnailImage, thumbnailX, thumbnailY, thumbnailSize, thumbnailSize, 0, 0, thumbnailCanvas.width, thumbnailCanvas.height);
-
-            const bg2 = await canvas.loadImage("https://i.ibb.co/wNzKvLg/2.png")
-
+        
+            const bg2 = await canvas.loadImage("https://i.ibb.co/wNzKvLg/2.png");
+        
             // Draw the background
             ctx.drawImage(background, 0, 0, 1280, 350);
             ctx.drawImage(bg2, 0, 0, 1280, 350);
-
+        
             // Apply fade effect between background and upper parts
             const gradient = ctx.createLinearGradient(0, 0, 0, 350);
             gradient.addColorStop(0, 'rgba(0,0,0,0.1)'); // Fully transparent
             gradient.addColorStop(0.5, 'rgba(0,0,0,0.1)'); // 50% transparent
             gradient.addColorStop(1, 'rgba(0,0,0,0.1)'); // Fully opaque
-
+        
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, 1280, 350);
-            ctx.fillStyle = `#2d312f`;
+            ctx.fillStyle = `#ffffff`;
             ctx.font = `60px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
             ctx.fillText(this.name, 430, 155); 
-
-            ctx.fillStyle = '#7300FF';
+        
+            ctx.fillStyle = '#03ac63';
             ctx.font = `45px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
             ctx.fillText(this.author, 430, 210); 
-
-            ctx.fillStyle = `#ffffff`;
+        
+            ctx.fillStyle = `#969bbb`;
             ctx.font = `35px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
-            ctx.fillText("Request by " + this.requester, 430, 260);
+            ctx.fillText(this.requester, 430, 260);
             ctx.save();
-
-            const thumbnailMaskCanvas = canvas.createCanvas(thumbnailCanvas.width, thumbnailCanvas.height);
-            const thumbnailMaskCtx = thumbnailMaskCanvas.getContext('2d');
-            const thumbnailMaskRadius = thumbnailCanvas.width / 2;
-            
-            thumbnailMaskCtx.beginPath();
-            thumbnailMaskCtx.arc(thumbnailMaskRadius, thumbnailMaskRadius, thumbnailMaskRadius, 0, 2 * Math.PI);
-            thumbnailMaskCtx.closePath();
-            thumbnailMaskCtx.fillStyle = '#000'; // You can change the color to any color you prefer
-            thumbnailMaskCtx.fill();
-            
-          
-            thumbnailCtx.globalCompositeOperation = 'destination-in';
-            thumbnailCtx.drawImage(thumbnailMaskCanvas, 0, 0);
-            thumbnailCtx.globalCompositeOperation = 'source-over';
-            ctx.drawImage(thumbnailCanvas, 80, 68, 250, 250);
-
+        
+            // Draw the processed thumbnail onto the main canvas
+            ctx.drawImage(thumbnailCanvas, 80, 65, 250, 250);
+        
             return image.toBuffer('image/png');
-        }  else if (this.theme === "theme3") {
+        }
+         else if (this.theme === "theme3") {
 
             const progressBarWidth = (validatedProgress / 100) * 670;
             const circleX = progressBarWidth + 60;
