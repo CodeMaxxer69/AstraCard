@@ -1,4 +1,4 @@
-export declare class mewcard {
+export declare class AstraCard {
   constructor(options?: {
     name?: string;
     author?: string;
