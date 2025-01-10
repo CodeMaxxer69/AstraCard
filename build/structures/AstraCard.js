@@ -700,7 +700,7 @@ class AstraCard {
                 ctx.font = `60px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
                 ctx.fillText(this.name, 430, 155); 
             
-                ctx.fillStyle = '#25EA31';
+                ctx.fillStyle = '#1C12E7';
                 ctx.font = `45px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
                 ctx.fillText(this.author, 430, 210); 
             
@@ -819,7 +819,7 @@ class AstraCard {
                     ctx.font = `60px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
                     ctx.fillText(this.name, 430, 155); 
                 
-                    ctx.fillStyle = '#1C12E7';
+                    ctx.fillStyle = '#25EA31';
                     ctx.font = `45px circular-std, noto-emoji, noto-sans-jp, noto-sans, noto-sans-kr`;
                     ctx.fillText(this.author, 430, 210); 
                 
